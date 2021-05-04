@@ -22,6 +22,7 @@ from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from getpass import getpass
 from pathlib import Path
 from textwrap import dedent
 
@@ -132,7 +133,7 @@ def main():
             grp_key = curr_key
 
     # get email credentials
-    password = input(f"Enter your password for the account {ACCOUNT} on server {SERVER}: ")
+    password = getpass(f"Enter your password for the account {ACCOUNT} on server {SERVER}: ")
 
     # log in to server using secure context and send email
     context = ssl.create_default_context()
