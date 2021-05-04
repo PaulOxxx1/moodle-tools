@@ -97,6 +97,12 @@ parser.add_argument(
     '--debug', type=str2bool, nargs='?', const=True, default=True,
     help="whether to use debug mode. the script won't actually send any emails in this mode.",
 )
+parser.add_argument(
+    '--send_all_emails_to', 
+    help="send all emails to this address instead of the student's addresses. "
+         "use this e.g. for testing/debugging.",
+    type=str,
+)
 args = parser.parse_args()
 
 
@@ -230,7 +236,14 @@ def main():
                 # add attachment to message and convert message to string
                 message.attach(part)
                 text = message.as_string()
-                receiver_email = row.droplevel(1)['Email']
+
+                # get adress
+                if args.send_all_emails_to is not None:
+                    receiver_email = args.send_all_emails_to # overwrite address
+                else:
+                    receiver_email = row.droplevel(1)['Email']
+
+                # send email
                 if args.debug:
                     print("Debug mode on. Would have sent email to: ", receiver_email)
                 else:
