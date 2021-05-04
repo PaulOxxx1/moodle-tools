@@ -1,6 +1,8 @@
 # moodle-tools
 
-Tools for handling homework assignments downloaded from Moodle.
+Tools for handling homework assignments downloaded from Moodle, more specifically the [Moodle instance](https://moodle.rwth-aachen.de) used by [RWTH Aachen](https://www.rwth-aachen.de/go/id/a/). May or may not work with other Moodle instances.
+
+> This repo was created in 2021 for the lecture ["Mathematische Grundlagen II"](http://www.mathcces.rwth-aachen.de/3teaching/0classes/cesii), to more easily send corrected homework PDFs to students via email.
 
 
 ## Setup
