@@ -1,4 +1,4 @@
-# moodle-mailer
+# moodle-tools
 
 Tools for handling homework assignments downloaded from Moodle.
 
