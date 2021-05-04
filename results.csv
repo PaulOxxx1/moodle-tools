@@ -1,0 +1,8 @@
+Gruppe;Gruppe;Matrikelnummer;Name;Email;1;1;1;1;2;2;2;2;2
+1;2;;;;1;2;3;∑;1;2;3;4;∑
+1;1;123456;Müller, Klaus;klaus.mueller323@rwth-aachen.de;1;0,5;0,5;2;1;2;2;2;7
+1;2;654321;Dietrich, Franz;franz.dietrich878@rwth-aachen.de;1;0,5;0,5;2;0;1;0;0,5;1,5
+2;2;112233;Mustermann, Max;max.mustermann@rwth-aachen.de;0;1;1;2;0;1;0;0,5;1,5
+2;- ;445566;Merkel, Angela;angela.merkel@rwth-aachen.de;0;1;1;2;-;-;-;-;-
+;;Gesamt;;;1;1;1;3;1;2;2;2;7
+;;Schnitt;;;0,50;0,75;0,75;2,00;0,33;1,33;0,67;1,00;3,33

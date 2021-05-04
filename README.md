@@ -25,3 +25,7 @@ To display a help message, use:
 ```bash
 python send_results.py -h
 ```
+
+The repo contains a sample "Numbers" document which has the correct format to be used with the script. Simply use that document and add students as rows, new results as columns. The student groups can potentially also change every week, but you only need to create a new "Gruppe" column if something actually changed that week. For the script to work, e.g. the "Name" column entries need to have the exact same format as in Moodle (including special characters)!
+
+Once you are done, export the file in Numbers as a CSV file. The example CSV files is also contained in the repo.
