@@ -28,6 +28,8 @@ from textwrap import dedent
 import markdown
 import pandas as pd
 
+from utils import str2bool
+
 # parameters
 AUTHOR = 'Paul'
 SENDER_EMAIL = "paul.orschau@rwth-aachen.de"
@@ -91,10 +93,8 @@ parser.add_argument(
     type=int,
 )
 parser.add_argument(
-    '--debug',
-    help="activate debug mode. the script won't actually send any emails in this mode.",
-    default=True,
-    type=bool,
+    '--debug', type=str2bool, nargs='?', const=True, default=True,
+    help="whether to use debug mode. the script won't actually send any emails in this mode.",
 )
 args = parser.parse_args()
 
@@ -233,8 +233,7 @@ def main():
                 if args.debug:
                     print("Debug mode on. Would have sent email to: ", receiver_email)
                 else:
-                    pass
-                    # server.sendmail(SENDER_EMAIL, receiver_email, text)
+                    server.sendmail(SENDER_EMAIL, receiver_email, text)
 
     print("Done!")
 
