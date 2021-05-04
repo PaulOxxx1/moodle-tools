@@ -56,7 +56,7 @@ TEMPLATE = """
 # parse input args
 parser = argparse.ArgumentParser(
     description='Script for sending out corrected homework PDFs and results to students.',
-    formatter_class=argparse.ArgumentDefaultsHelpFormatter())
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument(
     '--root_folder', 
     required=True,
@@ -77,7 +77,6 @@ parser.add_argument(
 )
 parser.add_argument(
     '--debug',
-    required=True,
     help="activate debug mode. the script won't actually send any emails in this mode.",
     default=True,
     type=bool,
