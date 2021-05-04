@@ -15,7 +15,6 @@ import pandas as pd
 
 # parameters
 AUTHOR = 'Paul'
-DEBUG = True
 SENDER_EMAIL = "paul.orschau@rwth-aachen.de"
 ACCOUNT = "ai479519@rwth-aachen.de"
 SERVER = "mail.rwth-aachen.de"
@@ -56,7 +55,8 @@ TEMPLATE = """
 
 # parse input args
 parser = argparse.ArgumentParser(
-    description='Script for sending out corrected homework PDFs and results to students.',)
+    description='Script for sending out corrected homework PDFs and results to students.',
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter())
 parser.add_argument(
     '--root_folder', 
     required=True,
@@ -74,6 +74,13 @@ parser.add_argument(
     required=True,
     help="index of homework to send results for, e.g. 2 for 'HA02'.",
     type=int,
+)
+parser.add_argument(
+    '--debug',
+    required=True,
+    help="activate debug mode. the script won't actually send any emails in this mode.",
+    default=True,
+    type=bool,
 )
 args = parser.parse_args()
 
@@ -209,10 +216,11 @@ def main():
                 message.attach(part)
                 text = message.as_string()
                 receiver_email = row.droplevel(1)['Email']
-                if DEBUG:
+                if args.debug:
                     print("Debug mode on. Would have sent email to: ", receiver_email)
                 else:
-                    server.sendmail(SENDER_EMAIL, receiver_email, text)
+                    pass
+                    # server.sendmail(SENDER_EMAIL, receiver_email, text)
 
     print("Done!")
 
