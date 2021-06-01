@@ -40,35 +40,31 @@ PORT = 587  # for starttls
 FILENAME_TEMPLATE = "corrected_{idx:02}.pdf"
 SUBJECT = "Mathe Hausaufgabe {idx} wurde korrigiert"
 TEMPLATE = """
-    ### Hallo {first}!
+### Hallo {first}!
 
-    Hier ist deine korrigierte Mathe Hausaufgabe {idx}.
+Hier ist deine korrigierte Mathe Hausaufgabe {idx}.
 
-    Deine Gruppe bestand aus:
+Deine Gruppe bestand aus:
 
-    - {name_a}
+{name_list}
 
-    - {name_b}
+Deine Gruppe hat diese Woche folgende Punktzahlen erreicht:
 
-    - {name_c}
+| Aufgabe | Punkte |
+| :---- | ----: |
+| 1 | {points_1} |
+| 2 | {points_2}  |
+| 3 | {points_3}  |
+| 4 | {points_4}  |
+| ∑ | {sum} |
 
-    Deine Gruppe hat diese Woche folgende Punktzahlen erreicht:
+Bei Rückfragen zur Korrektur kannst du mir gerne eine Email schreiben, 
+zum Beispiel indem du einfach auf diese Email antwortest.
 
-    | Aufgabe | Punkte |
-    | :---- | ----: |
-    | 1 | {points_1} |
-    | 2 | {points_2}  |
-    | 3 | {points_3}  |
-    | 4 | {points_4}  |
-    | ∑ | {sum} |
+Gruß
 
-    Bei Rückfragen zur Korrektur kannst du mir gerne eine Email schreiben, 
-    zum Beispiel indem du einfach auf diese Email antwortest.
-
-    Gruß
-
-    {author}
-    """
+{author}
+"""
 
 
 # parse input args
@@ -193,12 +189,11 @@ def main():
 
                 # compose email
                 last, first = name.split(', ')
+                team_names = [row.droplevel(1)['Name'] for _,row in rows.iterrows()]
+                name_list = '\n'.join(['- ' + name for name in team_names])
                 body = TEMPLATE.format(
                     first=first,
-                    name_a=rows.iloc[0].droplevel(1)['Name'],
-                    name_b=rows.iloc[1].droplevel(1)['Name'],
-                    name_c=rows.iloc[2].droplevel(1)['Name'] if len(rows) > 2 
-                        else 'Niemand sonst, denn ihr habt zu zweit abgegeben.',
+                    name_list=name_list,
                     idx=idx,
                     points_1=row[(str(idx), '1')] if (str(idx), '1') in row else '-',
                     points_2=row[(str(idx), '2')] if (str(idx), '2') in row else '-',
